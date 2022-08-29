@@ -1,31 +1,28 @@
-import { ref } from 'vue'
-const App = () => {
-    const data = ref([]);
-    const list = ref('');
-    const category = ref('');
-    const todotextRef = ref(null);
+import { ref } from 'vue';
 
-    const handleTodoSubmit = () => {
-        if (list.value === '' || category.value === '') {
+
+const App = () => {
+
+    const data = ref([]);
+
+    const handleTodoSubmit = (payload) => {
+        const { list, category } = payload
+        if (list.trim() === '' || category.trim() === '') {
             alert('missing your list or category')
         } else {
             data.value.push({
-            id: Math.random() * 10,
-            list: list.value,
-            category: category.value,
-            completed: false
+                id: Math.random() * 10,
+                list,
+                category,
+                completed: false
             })
         }
-        list.value = '';
-        category.value='';
-        todotextRef.value.focus();
-        console.log(data.value)
     }
 
     const handleDeleteFromList = (id) => {
-        console.log(id)
+        console.log("id")
         data.value = data.value.filter(i => i.id !== id)
-    } 
+    }
 
     const handleUpdateCompletedList = (index) => {
         console.log(index);
@@ -34,9 +31,6 @@ const App = () => {
 
     return {
         data, 
-        list,
-        category, 
-        todotextRef,
         handleTodoSubmit,
         handleDeleteFromList,
         handleUpdateCompletedList

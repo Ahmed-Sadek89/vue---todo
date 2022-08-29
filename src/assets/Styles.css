@@ -49,10 +49,9 @@ input[type="radio"]:checked::before {
 }
 #app{
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    padding: 40px 0px;
+    padding: 40px 20px;
+    margin: 0px auto;
 }
 
 .parentComponent h1{
